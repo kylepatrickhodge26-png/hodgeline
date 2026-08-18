@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hodgeline — Local to Long Island</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0908;
+    --bg-soft:#121110;
+    --gold-1:#F3E1B5;
+    --gold-2:#D4AF6A;
+    --gold-3:#B8863F;
+    --muted:#8A7A55;
+    --hair:#2A251C;
+    --white:#F4F6F9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(60% 45% at 50% 0%, rgba(58,47,30,0.45) 0%, rgba(10,9,8,0) 70%),
+      var(--bg);
+    color:var(--white);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 28px;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+  }
+
+  /* corner ticks, echoes the badge/sticker mark */
+  .tick{position:fixed; width:16px; height:1px; background:var(--gold-3); opacity:0.55;}
+  .tick.v{width:1px; height:16px;}
+  .tick.tl-h{top:26px; left:26px;} .tick.tl-v{top:26px; left:26px;}
+  .tick.tr-h{top:26px; right:26px;} .tick.tr-v{top:26px; right:26px;}
+  .tick.bl-h{bottom:26px; left:26px;} .tick.bl-v{bottom:26px; left:26px;}
+  .tick.br-h{bottom:26px; right:26px;} .tick.br-v{bottom:26px; right:26px;}
+
+  .monogram{
+    width:96px;
+    height:96px;
+    margin-bottom:28px;
+    opacity:0;
+    animation: rise 900ms ease-out 120ms forwards;
+  }
+
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(44px, 9vw, 68px);
+    letter-spacing:0.04em;
+    background:linear-gradient(115deg, var(--gold-1), var(--gold-2) 45%, var(--gold-3) 70%, var(--gold-1));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    line-height:1.05;
+    opacity:0;
+    animation: rise 900ms ease-out 260ms forwards;
+  }
+
+  .locale{
+    font-family:'Jost', sans-serif;
+    font-size:12px;
+    letter-spacing:0.45em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-top:10px;
+    opacity:0;
+    animation: rise 900ms ease-out 380ms forwards;
+  }
+
+  .ridge{
+    width:220px;
+    height:34px;
+    margin:34px 0 30px;
+    opacity:0;
+    animation: rise 900ms ease-out 480ms forwards;
+  }
+
+  .tagline{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(20px, 3.4vw, 26px);
+    line-height:1.5;
+    color:var(--white);
+    max-width:480px;
+    opacity:0;
+    animation: rise 900ms ease-out 600ms forwards;
+  }
+  .tagline em{
+    font-style:italic;
+    color:var(--gold-2);
+  }
+
+  .sub{
+    margin-top:18px;
+    font-size:14px;
+    line-height:1.8;
+    color:#B9AF98;
+    max-width:420px;
+    letter-spacing:0.01em;
+    opacity:0;
+    animation: rise 900ms ease-out 700ms forwards;
+  }
+
+  .divider{
+    width:1px;
+    height:44px;
+    background:linear-gradient(var(--gold-3), transparent);
+    margin:38px 0 30px;
+    opacity:0;
+    animation: rise 900ms ease-out 800ms forwards;
+  }
+
+  form{
+    display:flex;
+    width:100%;
+    max-width:380px;
+    border:1px solid var(--hair);
+    border-radius:2px;
+    overflow:hidden;
+    opacity:0;
+    animation: rise 900ms ease-out 900ms forwards;
+  }
+  input[type="text"]{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--white);
+    font-family:'Jost', sans-serif;
+    font-size:14px;
+    padding:16px 18px;
+    letter-spacing:0.02em;
+  }
+  input[type="text"]::placeholder{color:#5C5748;}
+  button{
+    background:linear-gradient(120deg, var(--gold-2), var(--gold-3));
+    border:none;
+    color:#0A0908;
+    font-family:'Jost', sans-serif;
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:0 26px;
+    cursor:pointer;
+    transition:filter 200ms ease, transform 200ms ease;
+  }
+  button:hover{filter:brightness(1.08);}
+  button:active{transform:scale(0.98);}
+
+  .note{
+    margin-top:16px;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:#5C5748;
+    text-transform:uppercase;
+    opacity:0;
+    animation: rise 900ms ease-out 1000ms forwards;
+  }
+  .note.success{color:var(--gold-2); display:none;}
+
+  .social{
+    margin-top:56px;
+    display:flex;
+    gap:28px;
+    opacity:0;
+    animation: rise 900ms ease-out 1100ms forwards;
+  }
+  .social a{
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+    transition:color 200ms ease, border-color 200ms ease;
+  }
+  .social a:hover{color:var(--gold-1); border-color:var(--gold-3);}
+
+  footer{
+    position:absolute;
+    bottom:52px;
+    font-size:10px;
+    letter-spacing:0.1em;
+    color:#4A4638;
+    opacity:0;
+    animation: rise 900ms ease-out 1200ms forwards;
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .monogram,.brand,.locale,.ridge,.tagline,.sub,.divider,form,.note,.social,footer{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
+
+  @media (max-width:480px){
+    form{flex-direction:column; border:none; gap:10px;}
+    input[type="text"]{border:1px solid var(--hair); border-radius:2px;}
+    button{padding:14px; border-radius:2px;}
+    .social{gap:20px; flex-wrap:wrap; justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+  <span class="tick tl-h"></span><span class="tick tl-v"></span>
+  <span class="tick tr-h"></span><span class="tick tr-v"></span>
+  <span class="tick bl-h"></span><span class="tick bl-v"></span>
+  <span class="tick br-h"></span><span class="tick br-v"></span>
+
+  <div class="wrap">
+
+    <svg class="monogram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F3E1B5"/>
+          <stop offset="35%" stop-color="#D4AF6A"/>
+          <stop offset="65%" stop-color="#B8863F"/>
+          <stop offset="100%" stop-color="#E9CE93"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="92" fill="none" stroke="url(#g)" stroke-width="1"/>
+      <g fill="url(#g)">
+        <rect x="64" y="52" width="15" height="86" rx="1"/>
+        <rect x="121" y="52" width="15" height="86" rx="1"/>
+        <rect x="64" y="88" width="72" height="15" rx="1"/>
+      </g>
+      <polyline points="46,116 78,74 100,102 122,74 154,116" fill="none" stroke="#0A0908" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline points="46,114.5 78,72.5 100,100.5 122,72.5 154,114.5" fill="none" stroke="url(#g)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+
+    <h1 class="brand">Hodgeline</h1>
+    <div class="locale">Local to Long Island</div>
+
+    <svg class="ridge" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="0,26 40,10 70,22 100,4 130,22 160,10 220,26" fill="none" stroke="#B8863F" stroke-width="1.25"/>
+    </svg>
+
+    <p class="tagline">Jackets are dead to us.<br><em>Long live snow pants and hoodies.</em></p>
+    <p class="sub">Waterproof hoodies and better quality snow pants — built by a rider who grew up driving to Windham every winter and never once wore a jacket. First drop coming soon.</p>
+
+    <div class="divider"></div>
+
+    <form id="notify-form" action="https://formspree.io/f/xwleweaq" method="POST">
+      <input type="text" id="email-input" name="contact" placeholder="Email or phone number" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="note" id="form-note">Be first to know when we drop.</p>
+
+    <div class="social">
+      <a href="https://instagram.com/hodgeline" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@hodgeline" target="_blank" rel="noopener">TikTok</a>
+    </div>
+
+    <footer>&copy; <span id="year"></span> Hodgeline. Local to Long Island.</footer>
+  </div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('notify-form');
+  const note = document.getElementById('form-note');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const emailInput = document.getElementById('email-input');
+    const email = emailInput.value;
+    const button = form.querySelector('button');
+    if(!email) return;
+
+    button.disabled = true;
+    button.textContent = 'Sending...';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if(response.ok){
+        note.textContent = "You're on the list. We'll reach out when we drop.";
+        note.classList.add('success');
+        note.style.display = 'block';
+        form.reset();
+        button.textContent = 'Added';
+      } else {
+        note.textContent = "Something went wrong. Try again.";
+        note.style.display = 'block';
+        button.disabled = false;
+        button.textContent = 'Notify Me';
+      }
+    }).catch(() => {
+      note.textContent = "Something went wrong. Try again.";
+      note.style.display = 'block';
+      button.disabled = false;
+      button.textContent = 'Notify Me';
+    });
+  });
+</script>
+
+</body>
+</html>
