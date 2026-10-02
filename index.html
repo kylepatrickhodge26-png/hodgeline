@@ -249,9 +249,13 @@
   <div>
     <h1>Jackets are<br>dead.</h1>
     <p class="sub">Why ride in a puffy jacket you take off every two runs? The Hodgeline Shell is waterproof, seam-taped, and light enough to actually move in, with a built-in hood for when the weather turns.</p>
-    <form class="signup" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form class="signup" action="https://formsubmit.co/hodgelinebrand@gmail.com" method="POST">
       <label for="hero-email" class="sr-only" style="position:absolute;left:-9999px;">Email address</label>
       <input id="hero-email" type="email" name="email" placeholder="you@email.com" required>
+      <input type="hidden" name="_subject" value="New Hodgeline early access signup">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://hodgeline.com/#thanks">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <input type="hidden" name="source" value="hero">
       <button type="submit">Get early access</button>
     </form>
@@ -327,10 +331,14 @@
     <div class="inner">
       <h2>Want in before everyone else?</h2>
       <p>The first 50 people on this list get early access and a discount before the drop opens to everyone else. Everyone on the list also gets to vote on the next colorway.</p>
-      <form class="signup" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="signup" action="https://formsubmit.co/hodgelinebrand@gmail.com" method="POST">
         <label for="final-email" class="sr-only" style="position:absolute;left:-9999px;">Email address</label>
         <input id="final-email" type="email" name="email" placeholder="you@email.com" required>
-        <input type="hidden" name="source" value="final-cta">
+        <input type="hidden" name="_subject" value="New Hodgeline early access signup">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://hodgeline.com/#thanks">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="source" value="final-cta">
         <button type="submit">Join the list</button>
       </form>
     </div>
@@ -354,5 +362,15 @@
   </div>
 </footer>
 
+<script>
+if (location.hash === '#thanks') {
+  var t = document.createElement('div');
+  t.setAttribute('role','status');
+  t.textContent = "You're on the list. Watch your inbox for early access.";
+  t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#b8642c;color:#f4ede1;padding:14px 22px;border-radius:6px;font-weight:600;z-index:99;max-width:90vw;text-align:center';
+  document.body.appendChild(t);
+  setTimeout(function(){ t.remove(); history.replaceState(null,'',location.pathname); }, 5000);
+}
+</script>
 </body>
 </html>
