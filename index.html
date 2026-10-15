@@ -169,8 +169,10 @@
   }
 
   /* Story */
-  .gear-photo { margin: 40px auto 8px; max-width: 560px; }
+  .gear-photo { margin: 40px auto 8px; max-width: 860px; }
+  .gear-duo { display: grid; grid-template-columns: 0.894fr 0.65fr; gap: 14px; }
   .gear-photo img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 18px 40px rgba(0,0,0,0.18); }
+  @media (max-width: 560px) { .gear-duo { gap: 8px; } }
   .gear-photo figcaption, .story figcaption { font-size: 0.85rem; margin-top: 10px; text-align: center; }
   .gear-photo figcaption { color: #6b6156; }
   .story .stickers { margin: 0; max-width: 380px; }
@@ -262,6 +264,7 @@
       <label for="hero-email" class="sr-only" style="position:absolute;left:-9999px;">Email address</label>
       <input id="hero-email" type="email" name="email" placeholder="you@email.com" required>
       <input type="hidden" name="_subject" value="New Hodgeline early access signup">
+      <input type="hidden" name="ref" value="none">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="https://hodgeline.com/sneak-peek.html">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -282,8 +285,11 @@
     <h2>Meet the Shell.</h2>
     <p class="lede">The piece that replaces your bulky jacket. Throw it over a hoodie, pair it with our baggy pants, and you're set for the whole day.</p>
     <figure class="gear-photo">
-      <img src="shell-front.jpg" alt="The Hodgeline Shell, a black waterproof half zip with a built-in hood and white piping" width="1186" height="1327" loading="lazy">
-      <figcaption>The Shell. Design mockup, sample in production.</figcaption>
+      <div class="gear-duo">
+        <img src="shell-front.jpg" alt="The Hodgeline Shell, a black waterproof half zip with a built-in hood and white piping" width="1186" height="1327" loading="lazy">
+        <img src="peek-pants.jpg" alt="Hodgeline baggy black snow pants with an elastic cuff, worn in the snow" width="780" height="1200" loading="lazy">
+      </div>
+      <figcaption>The Shell and the Pants. Design mockups, sample in production.</figcaption>
     </figure>
     <div class="spec-list">
       <div class="spec-row">
@@ -332,7 +338,8 @@
       </div>
       <div>
         <h3>Ride for Hodgeline</h3>
-        <p>We're building a crew of riders from Long Island and Windham. If you ride and you post, DM <a href="https://instagram.com/hodgeline" target="_blank" rel="noopener">@hodgeline</a>.</p>
+        <p>We're building a herd of riders from Long Island and Windham. Repost a Hodgeline video, apply, and earn your way to free gear.</p>
+        <p><a href="ride.html">Join the herd</a></p>
       </div>
     </div>
     <div class="chart-wrap" id="chart">
@@ -351,6 +358,7 @@
         <label for="final-email" class="sr-only" style="position:absolute;left:-9999px;">Email address</label>
         <input id="final-email" type="email" name="email" placeholder="you@email.com" required>
         <input type="hidden" name="_subject" value="New Hodgeline early access signup">
+      <input type="hidden" name="ref" value="none">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="https://hodgeline.com/sneak-peek.html">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -374,11 +382,21 @@
         TikTok
       </a>
     </div>
-    <div class="copyright">© 2026 Hodgeline. Local to Long Island.</div>
+    <div class="copyright">© 2026 Hodgeline. Local to Long Island. · <a href="ride.html">Ride for Hodgeline</a></div>
   </div>
 </footer>
 
 <script>
+(function(){
+  var ref = '';
+  try { ref = (new URLSearchParams(location.search).get('ref') || '').toLowerCase().replace(/[^a-z0-9._-]/g,'').slice(0,30); } catch(e) {}
+  try { if (ref) { localStorage.setItem('hl_ref', ref); } else { ref = localStorage.getItem('hl_ref') || ''; } } catch(e) {}
+  if (!ref) return;
+  document.querySelectorAll('form.signup').forEach(function(f){
+    var r = f.querySelector('input[name="ref"]'); if (r) r.value = ref;
+    var sub = f.querySelector('input[name="_subject"]'); if (sub) sub.value = 'New Hodgeline signup (ref: ' + ref + ')';
+  });
+})();
 if (location.hash === '#thanks') {
   var t = document.createElement('div');
   t.setAttribute('role','status');
