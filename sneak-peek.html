@@ -32,6 +32,10 @@
   .piece { display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:center; padding:48px 0; border-top:1px solid var(--line); }
   .piece.flip { grid-template-columns:0.8fr 1.2fr; }
   .piece .img { background:#d9d6d0; border-radius:4px; overflow:hidden; }
+  .duo { display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:end; }
+  .duo figure { margin:0; }
+  .duo img { border-radius:4px; width:100%; aspect-ratio:5/6; object-fit:cover; }
+  .duo figcaption { text-align:center; font-size:0.8rem; color:#a9a093; margin-top:6px; letter-spacing:0.12em; text-transform:uppercase; }
   .piece.flip .img { background:none; }
   .piece h2 { font-size:clamp(2rem,4.5vw,3.2rem); }
   .piece .tag { display:inline-block; margin-top:10px; color:var(--rust); font-weight:700; font-size:0.85rem; letter-spacing:0.12em; text-transform:uppercase; }
@@ -78,7 +82,10 @@
   </section>
 
   <section class="piece">
-    <div class="img"><img src="peek-shell.jpg" alt="The Hodgeline Shell, front and back, black with white piping" width="1400" height="838"></div>
+    <div class="duo">
+      <figure><img src="shell-front.jpg" alt="The Hodgeline Shell, front" width="1186" height="1327"><figcaption>Front</figcaption></figure>
+      <figure><img src="shell-back.jpg" alt="The Hodgeline Shell, back, with white piping" width="685" height="838"><figcaption>Back</figcaption></figure>
+    </div>
     <div>
       <h2>The Shell</h2>
       <span class="tag">The reason jackets are dead</span>
