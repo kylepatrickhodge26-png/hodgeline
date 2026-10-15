@@ -178,6 +178,25 @@
   .story .stickers { margin: 0; max-width: 380px; }
   .story .stickers img { width: 100%; height: auto; border-radius: 4px; }
   .story figcaption { color: #a9a093; }
+  .product { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 56px; }
+  .product.flip .product-img { order: 2; }
+  .product-img { display: flex; justify-content: center; }
+  .product-img img { width: 100%; max-width: 520px; height: auto; border-radius: 4px; box-shadow: 0 18px 40px rgba(0,0,0,0.18); }
+  .product.flip .product-img img { max-width: 380px; }
+  .product-tag { color: var(--rust-dark); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.8rem; }
+  .product h3 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-top: 6px; }
+  .product p { color: #4a4238; font-size: 1.05rem; margin: 14px 0 0; max-width: 46ch; }
+  .product ul { list-style: none; padding: 0; margin: 20px 0 0; border-top: 1px solid #cbbfa4; }
+  .product li { padding: 10px 0; border-bottom: 1px solid #cbbfa4; }
+  .product li::before { content: '/// '; color: var(--rust); font-weight: 700; }
+  .product-link { display: inline-block; margin-top: 18px; font-weight: 600; color: var(--ink); }
+  @media (max-width: 780px) {
+    .product, .product.flip { grid-template-columns: 1fr; gap: 24px; margin-top: 44px; }
+    .product.flip .product-img { order: 0; }
+    .product.flip .product-img img { max-width: 300px; }
+  }
+  .nav a.navlink { text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .nav a.navlink:hover { color: var(--rust); }
   .story { background: var(--black); padding: 96px 24px; }
   .story .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
   .story h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); color: var(--cream); max-width: 14ch; }
@@ -251,6 +270,7 @@
           <svg viewBox="0 0 24 24"><path d="M16.5 2h-3.1v13.4c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.28 0 .55.04.8.12V9.6a5.9 5.9 0 0 0-.8-.06 5.87 5.87 0 1 0 5.87 5.87V9.05a7.6 7.6 0 0 0 4.4 1.4V7.3a4.6 4.6 0 0 1-4.47-5.3z"/></svg>
         </a>
       </div>
+      <a class="navlink" href="sponsors.html">Sponsors</a>
       <a class="cta" href="#join">Get early access</a>
     </div>
   </div>
@@ -284,22 +304,39 @@
   <div class="wrap">
     <h2>Meet the Shell.</h2>
     <p class="lede">The piece that replaces your bulky jacket. Throw it over a hoodie, pair it with our baggy pants, and you're set for the whole day.</p>
-    <figure class="gear-photo">
-      <div class="gear-duo">
-        <img src="shell-front.jpg" alt="The Hodgeline Shell, a black waterproof half zip with a built-in hood and white piping" width="1186" height="1327" loading="lazy">
-        <img src="peek-pants.jpg" alt="Hodgeline baggy black snow pants with an elastic cuff, worn in the snow" width="780" height="1200" loading="lazy">
-      </div>
-      <figcaption>The Shell and the Pants. Design mockups, sample in production.</figcaption>
-    </figure>
-    <div class="spec-list">
-      <div class="spec-row">
+    <div class="product">
+      <div class="product-img"><img src="shell-front.jpg" alt="The Hodgeline Shell, a black waterproof half zip with a built-in hood and white piping" width="1186" height="1327" loading="lazy"></div>
+      <div class="product-copy">
+        <div class="product-tag">The star</div>
         <h3>The Shell</h3>
-        <p>Fully waterproof and seam-taped, in a boxy, oversized cut with a half zip, white piping, and a built-in hood.</p>
+        <p>The piece that kills the puffy jacket. Fully waterproof and seam-taped, in a boxy, oversized cut you can throw over a hoodie.</p>
+        <ul>
+          <li>Waterproof with taped seams</li>
+          <li>Half zip with a built-in hood</li>
+          <li>Big front pocket</li>
+          <li>White piping across the body and arms</li>
+          <li>Boxy body, baggy arms</li>
+        </ul>
+        <a class="product-link" href="#chart">Shell size chart</a>
       </div>
-      <div class="spec-row">
+    </div>
+    <div class="product flip">
+      <div class="product-img"><img src="peek-pants.jpg" alt="Hodgeline baggy black snow pants with an elastic cuff, worn in the snow" width="780" height="1200" loading="lazy"></div>
+      <div class="product-copy">
+        <div class="product-tag">The partner</div>
         <h3>The Pants</h3>
-        <p>Insulated and baggy through the hip and thigh, with a gathered elastic cuff at the ankle so snow stays out while you ride.</p>
+        <p>Baggy through the hip and thigh, clean at the boot. Fleece-lined so you stay warm without extra layers.</p>
+        <ul>
+          <li>Waterproof with fleece lining</li>
+          <li>Wide, baggy leg</li>
+          <li>Elastic cuff so they don't stack over your boots</li>
+          <li>Zip pockets</li>
+          <li>Shield logo on the hip</li>
+        </ul>
+        <a class="product-link" href="#chart">Pants size chart</a>
       </div>
+    </div>
+    <div class="spec-list">
       <div class="spec-row kit">
         <h3>The Kit</h3>
         <p>Shell and pants together, for less than buying them separately. Everything you need for the mountain, nothing you don't.</p>
@@ -339,7 +376,7 @@
       <div>
         <h3>Ride for Hodgeline</h3>
         <p>We're building a herd of riders from Long Island and Windham. Repost a Hodgeline video, apply, and earn your way to free gear.</p>
-        <p><a href="ride.html">Join the herd</a></p>
+        <p><a href="sponsors.html">Join the herd</a></p>
       </div>
     </div>
     <div class="chart-wrap" id="chart">
@@ -382,7 +419,7 @@
         TikTok
       </a>
     </div>
-    <div class="copyright">© 2026 Hodgeline. Local to Long Island. · <a href="ride.html">Ride for Hodgeline</a></div>
+    <div class="copyright">© 2026 Hodgeline. Local to Long Island. · <a href="sponsors.html">Get sponsored</a></div>
   </div>
 </footer>
 
