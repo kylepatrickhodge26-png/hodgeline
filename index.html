@@ -197,6 +197,37 @@
   }
   .nav a.navlink { text-decoration: none; font-weight: 600; font-size: 0.9rem; }
   .nav a.navlink:hover { color: var(--rust); }
+  .nav a.sponsor-btn { background: var(--rust); color: var(--cream); text-decoration: none; font-weight: 700; font-size: 0.85rem; padding: 10px 18px; letter-spacing: 0.04em; text-transform: uppercase; border: 1px solid var(--rust); transition: background 0.15s; animation: pulse 2.4s ease-in-out 1s 3; }
+  .nav a.sponsor-btn:hover { background: var(--rust-dark); border-color: var(--rust-dark); }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(184,100,44,0.6); } 50% { box-shadow: 0 0 0 8px rgba(184,100,44,0); } }
+  @media (prefers-reduced-motion: reduce) { .nav a.sponsor-btn { animation: none; } }
+  .sponsor-band { background: var(--rust); color: var(--cream); padding: 56px 24px; overflow: hidden; }
+  .sponsor-band .wrap { display: grid; grid-template-columns: 220px 1fr auto; gap: 40px; align-items: center; }
+  .sponsor-band img { width: 220px; height: auto; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.35)); }
+  .sponsor-band .kick { font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.82rem; opacity: 0.9; }
+  .sponsor-band h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-top: 6px; }
+  .sponsor-band p { margin: 12px 0 0; font-size: 1.08rem; max-width: 48ch; }
+  .sponsor-band .go { background: var(--black); color: var(--cream); text-decoration: none; font-weight: 700; padding: 18px 30px; font-size: 1.05rem; white-space: nowrap; }
+  .sponsor-band .go:hover { background: var(--cream); color: var(--black); }
+  @media (max-width: 860px) {
+    .sponsor-band .wrap { grid-template-columns: 1fr; gap: 18px; text-align: center; }
+    .sponsor-band img { width: 160px; margin: 0 auto; }
+    .sponsor-band p { margin-left: auto; margin-right: auto; }
+    .sponsor-band .go { justify-self: center; }
+  }
+  .nav a.cta, .nav a.sponsor-btn { white-space: nowrap; }
+  .nav .brand { flex-shrink: 0; }
+  @media (max-width: 340px) { .nav .socials-mini { display: none; } }
+  @media (max-width: 400px) {
+    .nav-right { gap: 6px !important; }
+    .nav .socials-mini { gap: 6px; }
+    .icon-btn { width: 36px !important; height: 36px !important; }
+    .nav a.cta { padding: 9px 10px !important; }
+  }
+  @media (max-width: 480px) {
+    .hide-sm { display: none; }
+    .nav a.sponsor-btn { padding: 9px 11px; font-size: 0.78rem; }
+  }
   .story { background: var(--black); padding: 96px 24px; }
   .story .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
   .story h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); color: var(--cream); max-width: 14ch; }
@@ -270,8 +301,8 @@
           <svg viewBox="0 0 24 24"><path d="M16.5 2h-3.1v13.4c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.28 0 .55.04.8.12V9.6a5.9 5.9 0 0 0-.8-.06 5.87 5.87 0 1 0 5.87 5.87V9.05a7.6 7.6 0 0 0 4.4 1.4V7.3a4.6 4.6 0 0 1-4.47-5.3z"/></svg>
         </a>
       </div>
-      <a class="navlink" href="sponsors.html">Sponsors</a>
-      <a class="cta" href="#join">Get early access</a>
+      <a class="sponsor-btn" href="sponsors.html">Sponsors</a>
+      <a class="cta" href="#join"><span class="hide-sm">Get </span>early access</a>
     </div>
   </div>
 </header>
@@ -357,6 +388,18 @@
         <figcaption>Stickers are out. Scan one and you land here.</figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<section class="sponsor-band">
+  <div class="wrap">
+    <img src="goat.png" alt="The Hodgeline goat in a Shell and baggy pants" width="613" height="700" loading="lazy">
+    <div>
+      <div class="kick">Ride for Hodgeline</div>
+      <h2>Get sponsored.</h2>
+      <p>Repost a Hodgeline video, bring in your crew, and climb from the Herd to G.O.A.T. Top riders get free Shells and Pants every season.</p>
+    </div>
+    <a class="go" href="sponsors.html">Become a sponsored rider</a>
   </div>
 </section>
 
