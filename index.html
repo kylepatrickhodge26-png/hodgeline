@@ -472,10 +472,19 @@
   try { ref = (new URLSearchParams(location.search).get('ref') || '').toLowerCase().replace(/[^a-z0-9._-]/g,'').slice(0,30); } catch(e) {}
   try { if (ref) { localStorage.setItem('hl_ref', ref); } else { ref = localStorage.getItem('hl_ref') || ''; } } catch(e) {}
   if (!ref) return;
+  var sticker = ref === 'sticker';
   document.querySelectorAll('form.signup').forEach(function(f){
     var r = f.querySelector('input[name="ref"]'); if (r) r.value = ref;
-    var sub = f.querySelector('input[name="_subject"]'); if (sub) sub.value = 'New Hodgeline signup (ref: ' + ref + ')';
+    var sub = f.querySelector('input[name="_subject"]');
+    if (sub) sub.value = sticker ? 'New Hodgeline signup (STICKER5: 5% off)' : 'New Hodgeline signup (ref: ' + ref + ')';
   });
+  if (sticker) {
+    var bar = document.querySelector('.announce');
+    if (bar) {
+      bar.innerHTML = 'You scanned a Hodgeline sticker. <strong>5% off</strong> your first order with code <strong style="background:#131313;padding:2px 8px;letter-spacing:0.08em">STICKER5</strong>. <a href="#join" style="color:inherit">Join the list</a> to lock it in.';
+      bar.style.fontSize = '0.95rem';
+    }
+  }
 })();
 if (location.hash === '#thanks') {
   var t = document.createElement('div');
